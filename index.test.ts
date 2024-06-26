@@ -48,4 +48,9 @@ test('given input string "//;\n1;2,3", add() should return 6', () => {
     expect(add('//;\n1;2,3')).toBe(6);
 })
 
+// input: comma-separated string with negative numbers
+test('given input string "//;\n1;2,-3;-7", add() should throw exception -> "Error: Negative numbers found: -3, -7"', () => {
+    expect(() => add('//;\n1;2,-3;-7')).toThrowError("Negative numbers found: -3, -7");
+})
+
   
