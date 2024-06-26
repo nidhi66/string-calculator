@@ -8,7 +8,7 @@ export function add(numbers: string): number {
     return numbersArray.reduce((acc, curr) => acc + curr, 0); // adds up the numbers contained in a string
 }
 
-const numbers = '1,5';
+const numbers = '1';
 console.log("sum of given string: "+numbers+" is :", add(numbers)); // prints sum of given numbers string
 
 export default { add }
