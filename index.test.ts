@@ -43,4 +43,9 @@ test('given input string "1,\n2,2", add() should return 5', () => {
     expect(add('1,\n2,2')).toBe(5);
 })
 
+// input: comma-separated string with starting point //
+test('given input string "//;\n1;2,3", add() should return 6', () => {
+    expect(add('//;\n1;2,3')).toBe(6);
+})
+
   
