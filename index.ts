@@ -3,10 +3,12 @@ export function add(numbers: string): number {
         return 0;
     }
 
-  return numbers.length;
+    const numbersArray = numbers.split(",").map(Number);
+
+    return numbersArray.reduce((acc, curr) => acc + curr, 0); // adds up the numbers contained in a string
 }
 
-const numbers = '';
-console.log("sum of given string: "+numbers+" is :", add('')); // prints sum of given numbers string
+const numbers = '1,5';
+console.log("sum of given string: "+numbers+" is :", add(numbers)); // prints sum of given numbers string
 
 export default { add }
