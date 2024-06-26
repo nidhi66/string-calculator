@@ -33,4 +33,14 @@ test('given input string "1,2,3,4,  5", add() should return 15', () => {
     expect(add('1,2,3,4,  5')).toBe(15);
 })
 
+// input: comma-separated string with delimeter like \n
+test('given input string "1\n2,3", add() should return 6', () => {
+    expect(add('1\n2,3')).toBe(6);
+})
+
+// input: comma-separated string with continuous delimeters like , and \n
+test('given input string "1,\n2,2", add() should return 5', () => {
+    expect(add('1,\n2,2')).toBe(5);
+})
+
   
