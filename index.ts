@@ -1,16 +1,23 @@
 export function add(numbers: string): number {
-  if (numbers === '') {
+  if (numbers === '') { // manages empty string
       return 0;
   }
 
-  const delimiter = /,\s*|;|\n/; // checks for delimeter
+  if (numbers.includes("\n")) { // manages newline
+    numbers = numbers.replace(/\n/g, ",")
+  }
 
-  // remove // from starting and join with \n
-  const numberWithRemovedStartingPoint = numbers.split(/\n/).filter(line => !line.startsWith("//")).join('\n');
+  // manages support for different delimeters
+  if (numbers.slice(0, 2) === '//') { // removes starting lines
+    let delimeter = RegExp(numbers[2], 'g'); // detects given delimeter
+    numbers = numbers.replace(numbers.slice(0, 3), "") // replaces //delimeter(//;) with ""
+    numbers = numbers.replace(delimeter, ",") // replaces all occurences of delimeter with ,
+  }
 
-  // removes delimeter like \n , and ; 
-  const numbersArray = numberWithRemovedStartingPoint.split(delimiter).map(Number);
+  // convert string into array
+  const numbersArray = numbers.split(",").map(Number);
 
+  // filter negative numbers
   const negativeNumbers = numbersArray.filter(num => num < 0);
 
   if (negativeNumbers.length > 0) {
@@ -21,7 +28,7 @@ export function add(numbers: string): number {
   return numbersArray.reduce((acc, curr) => acc + curr, 0); // adds up the numbers contained in a string
 }
 
-const numbers = '//;\n1;2,3';
+const numbers = '//;\n1;2';
 console.log(`sum of given string: ${numbers} is : ${add(numbers)}`); // prints sum of given numbers string
 
 export default { add }

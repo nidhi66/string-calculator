@@ -43,14 +43,18 @@ test('given input string "1,\n2,2", add() should return 5', () => {
     expect(add('1,\n2,2')).toBe(5);
 })
 
-// input: comma-separated string with starting point //
+// input: comma-separated string with starting point // and delimeter ;
 test('given input string "//;\n1;2,3", add() should return 6', () => {
     expect(add('//;\n1;2,3')).toBe(6);
 })
 
 // input: comma-separated string with negative numbers
-test('given input string "//;\n1;2,-3;-7", add() should throw exception -> "Error: Negative numbers found: -3, -7"', () => {
+test('support given input string with delimeter ;  "//;\n1;2,-3;-7", add() should throw exception -> "Error: Negative numbers found: -3, -7"', () => {
     expect(() => add('//;\n1;2,-3;-7')).toThrowError("Negative numbers found: -3, -7");
 })
 
+// input: comma-separated string with starting point // and delimeter %
+test('support given input string with delimeter % "//%\n1%2,3\n%%4", add() should return 10', () => {
+    expect(add('//%\n1%2,3\n%%4')).toBe(10);
+})
   
